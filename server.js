@@ -1,7 +1,7 @@
 const express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
-  mongoose = require("mongoose"),;
+  mongoose = require("mongoose");
 require("dotenv").config();
 app.use(
   bodyParser.urlencoded({
@@ -43,10 +43,10 @@ function initApp() {
     next();
   });
 
-
   /********** RETOURE UNE ERREUR 404 SI AUCUNE ROUTE NE
    * CORRESPOND A LA DEMANDE
    */
+  require("./modules/taches/taches.routes")(app);
   app.use(function(req, res) {
     res.status(404).send("OUPS PAGE INTROUVABLE");
   });
