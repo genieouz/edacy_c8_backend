@@ -56,7 +56,7 @@ function initApp() {
     res.status(404).send("OUPS PAGE INTROUVABLE");
   });
 
-  var server = app.listen(process.env.NODE_PORT, function() {
+  var server = app.listen(process.env.PORT, function() {
     console.log("L'application tourne sur le port ", server.address().port);
   });
 }
