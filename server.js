@@ -9,11 +9,13 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 /**
  * CONNECTION A LA BASE MONGO
  */
-mongoose.connection.openUri(
+/*mongoose.connection.openUri(
   process.env.MONGO_URL,
   { useNewUrlParser: true },
   err => {
@@ -24,8 +26,11 @@ mongoose.connection.openUri(
 
     initApp();
   }
-);
-
+);*/
+app.get("/mor", function(req, res) {
+  res.send("Hello Mor");
+});
+initApp();
 //LOAD ROUTES
 function initApp() {
   app.use(function(req, res, next) {

@@ -1,12 +1,13 @@
 (function() {
   const Tache = require("./taches.schema").tacheModel;
+  const tacheService = require("./taches.service")();
   module.exports = {
     list: (req, res) => {
-      Tache.find({}, { _v: 0 }, (err, reponse) => {
-        res.json({
-          status: "success",
-          message: reponse
-        });
+      console.log("hell  o");
+      reponse = tacheService.find();
+      res.json({
+        status: "success",
+        message: reponse
       });
     },
     create: (req, res) => {
@@ -25,11 +26,10 @@
       });
     },
     read: (req, res) => {
-      Tache.find({ _id: req.params.id }, { __v: 0 }, (err, reponse) => {
-        res.json({
-          status: "succes",
-          message: reponse
-        });
+      let reponse = tacheService.read(req.params.id);
+      res.json({
+        status: "succes",
+        message: reponse
       });
     },
     delete: (req, res) => {

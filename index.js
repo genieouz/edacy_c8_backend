@@ -29,10 +29,6 @@ app.post("/", function(req, res) {
   res.send("Premier projet node via post ");
 });
 
-app.get("/tache", function(req, res, next) {
-  res.status(200).json(taches);
-});
-
 var server = app.listen(process.env.NODE_PORT, function() {
   console.log("server is listening on port ", server.address().port);
 });
