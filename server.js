@@ -15,7 +15,7 @@ app.use(express.static(distDir));
 /**
  * CONNECTION A LA BASE MONGO
  */
-/*mongoose.connection.openUri(
+mongoose.connection.openUri(
   process.env.MONGO_URL,
   { useNewUrlParser: true },
   err => {
@@ -26,11 +26,7 @@ app.use(express.static(distDir));
 
     initApp();
   }
-);*/
-app.get("/mor", function(req, res) {
-  res.send("Hello Mor");
-});
-initApp();
+);
 //LOAD ROUTES
 function initApp() {
   app.use(function(req, res, next) {

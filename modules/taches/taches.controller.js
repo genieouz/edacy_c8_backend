@@ -1,6 +1,9 @@
 (function() {
   const Tache = require("./taches.schema").tacheModel;
   const tacheService = require("./taches.service")();
+  const uploadFile = require("../../utils/file-upload").uploadFile;
+  const multer = require("multer");
+  const fs = require("fs");
   module.exports = {
     list: (req, res) => {
       console.log("hell  o");
@@ -52,6 +55,22 @@
           });
         }
       );
+    },
+    attacheFile: (req, res) => {
+      upload = multer({ dest: "public/attachments" }).single("fichier");
+      console.log(req.file);
+      try {
+        uploadFile(upload, req, res);
+        res.json({
+          message: "File uploaded",
+          body: req.file
+        });
+      } catch (e) {
+        res.status(500).json({
+          message: "Erreur lors de l'enregistrement du fichier",
+          error: e
+        });
+      }
     }
   };
 })();
