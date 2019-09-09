@@ -10,6 +10,6 @@
       .get(Ctrl.read)
       .delete(Ctrl.delete)
       .put(Ctrl.update);
-    app.route("/attach-file").put(Ctrl.attacheFile);
+    app.route("/:taskId/attach-file").put(Ctrl.attacheFile);
   };
 })();
