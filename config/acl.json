@@ -1,0 +1,27 @@
+[
+  {
+    "group": "admin",
+    "permissions": [
+      {
+        "resource": "*",
+        "methods": "*",
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "talent",
+    "permissions": [
+      {
+        "resource": "talents/",
+        "methods": ["POST", "PUT"],
+        "action": "deny"
+      },
+      {
+        "resource": "talents/*",
+        "methods": ["GET"],
+        "action": "allow"
+      }
+    ]
+  }
+]
