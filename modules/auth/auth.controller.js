@@ -21,7 +21,6 @@
                 prenom: user.prenom,
                 nom: user.nom,
                 username: user.username,
-                dateNaissance: user.dateNaissance,
                 role: user.role
               };
               let token = jwt.sign(

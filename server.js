@@ -44,6 +44,11 @@ function initApp() {
     next();
   });
 
+  /**
+   * CHARGEMENT DES ROUTES D'AUTHENTIFICATION
+   */
+  require("./modules/auth/auth.routes")(app);
+  
   /********** RETOURE UNE ERREUR 404 SI AUCUNE ROUTE NE
    * CORRESPOND A LA DEMANDE
    */

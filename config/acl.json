@@ -10,15 +10,15 @@
     ]
   },
   {
-    "group": "talent",
+    "group": "user",
     "permissions": [
       {
-        "resource": "talents/",
+        "resource": "tache/",
         "methods": ["POST", "PUT"],
         "action": "deny"
       },
       {
-        "resource": "talents/*",
+        "resource": "tache/*",
         "methods": ["GET"],
         "action": "allow"
       }

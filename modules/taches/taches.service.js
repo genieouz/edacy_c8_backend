@@ -3,6 +3,7 @@ var taches = [
   { titre: "tache 2", etat: "A faire", id: 2 },
   { titre: "tache 3", etat: "En cours", id: 3 }
 ];
+const Tache = require('./taches.schema').tacheModel;
 module.exports = function() {
   return {
     find: find,
@@ -10,8 +11,13 @@ module.exports = function() {
   };
 };
 
-function find() {
-  return taches;
+async function find() {
+  try{
+    const tasks = await Tache.find({});
+    return tasks;
+  }catch(err){
+    return err;
+  }
 }
 
 function read(id) {

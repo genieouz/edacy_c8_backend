@@ -5,28 +5,39 @@
   const multer = require("multer");
   const fs = require("fs");
   module.exports = {
-    list: (req, res) => {
-      console.log("hell  o");
-      reponse = tacheService.find();
+    list: async (req, res) => {
+      reponse = await tacheService.find();
       res.json({
         status: "success",
         message: reponse
       });
     },
-    create: (req, res) => {
-      let tache = new Tache(req.body);
-      tache.save((err, reponse) => {
-        if (err) {
-          res.status(500).json({
-            status: "error",
-            message: err
+    create: async (req, res) => {
+      upload = multer({ dest: "dist/attachments" }).single("fichier");
+      upload(req, res, function(error) {
+        if (error || !req.file) {
+          return res.status(500).json({
+            message: "Erreur lors de l'enregistrement du fichier",
+            error: error
+          });
+        } else {
+          oldPath = req.file.path;
+          extension = req.file.originalname.split(".");
+          nbItems = extension.length;
+          extension = extension[nbItems - 1];
+          newPath = oldPath + "." + extension;
+          fs.rename(oldPath, newPath, async err => {
+            req.body.file = req.file.filename + "." + extension;
+            let tache = new Tache(req.body);
+            response = await tache.save();
+            res.json({
+              status: "success",
+              message: reponse
+            });
           });
         }
-        res.json({
-          status: "success",
-          message: reponse
-        });
       });
+      
     },
     read: (req, res) => {
       let reponse = tacheService.read(req.params.id);
